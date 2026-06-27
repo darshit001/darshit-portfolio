@@ -70,7 +70,6 @@ const PROJECTS_DATA: ProjectData[] = [
     previewUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
     features: ["Natural language to SQL translation", "Schema graph analysis", "Multi-table join support", "Automated query generation", "Results visualization"],
     tech: ["Python", "LangChain", "OpenAI", "PostgreSQL", "FastAPI"],
-    liveUrl: "https://github.com/darshit001",
     liveUrl: "https://github.com/darshit001/NaturalSQL",
     githubUrl: "https://github.com/darshit001/NaturalSQL",
     featured: true
