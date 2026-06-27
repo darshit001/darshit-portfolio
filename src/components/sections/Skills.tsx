@@ -1,418 +1,370 @@
 "use client";
 
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import { useState, useMemo } from "react";
-import { Network, BrainCircuit, Terminal, TestTube2, Database, Cloud, LineChart, Code2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import {
+  BrainCircuit,
+  Terminal,
+  TestTube2,
+  Database,
+  Cloud,
+  Code2,
+  ChevronRight,
+  Sparkles,
+} from "lucide-react";
 
-const SKILL_DOMAINS = [
+const SKILL_CATEGORIES = [
   {
     id: "agentic",
     title: "Agentic AI & LLMs",
-    icon: <BrainCircuit className="w-5 h-5 text-primary" />,
-    color: "primary",
-    nodes: ["LangChain", "LangGraph", "LlamaIndex", "OpenAI", "Llama", "RAG Architectures", "Multi-Agent Systems"],
-    description: "Designing autonomous AI agents that reason, plan, and collaborate using LangChain and LangGraph.",
-    position: "left"
+    icon: <BrainCircuit className="w-6 h-6" />,
+    color: "from-amber-400 to-orange-500",
+    bgGlow: "rgba(245,158,11,0.15)",
+    borderColor: "border-amber-500/20",
+    hoverBorder: "hover:border-amber-500/50",
+    textColor: "text-amber-400",
+    description:
+      "Designing autonomous AI agents that reason, plan, and collaborate using cutting-edge frameworks.",
+    skills: [
+      { name: "LangChain", level: 95 },
+      { name: "LangGraph", level: 90 },
+      { name: "LlamaIndex", level: 85 },
+      { name: "OpenAI API", level: 92 },
+      { name: "RAG Architectures", level: 90 },
+      { name: "Multi-Agent Systems", level: 88 },
+      { name: "Llama / Mistral", level: 80 },
+    ],
   },
   {
     id: "ml",
     title: "ML & Deep Learning",
-    icon: <TestTube2 className="w-5 h-5 text-secondary" />,
-    color: "secondary",
-    nodes: ["TensorFlow", "PyTorch", "Scikit-Learn", "HuggingFace", "Transformers", "BERT", "GPT"],
-    description: "Building and training neural networks, fine-tuning models, and deploying ML pipelines.",
-    position: "right"
+    icon: <TestTube2 className="w-6 h-6" />,
+    color: "from-violet-400 to-purple-500",
+    bgGlow: "rgba(139,92,246,0.15)",
+    borderColor: "border-violet-500/20",
+    hoverBorder: "hover:border-violet-500/50",
+    textColor: "text-violet-400",
+    description:
+      "Building and training neural networks for NLP, computer vision, and predictive analytics.",
+    skills: [
+      { name: "PyTorch", level: 88 },
+      { name: "TensorFlow", level: 85 },
+      { name: "Scikit-Learn", level: 90 },
+      { name: "HuggingFace", level: 87 },
+      { name: "Transformers", level: 85 },
+      { name: "GPT / BERT", level: 83 },
+    ],
   },
   {
     id: "backend",
     title: "Backend & APIs",
-    icon: <Terminal className="w-5 h-5 text-primary" />,
-    color: "primary",
-    nodes: ["FastAPI", "Django", "Flask", "PySpark", "ETL Pipelines"],
-    description: "High-performance REST APIs and scalable backend systems for AI applications.",
-    position: "left"
-  },
-  {
-    id: "mlops",
-    title: "MLOps & Infrastructure",
-    icon: <Cloud className="w-5 h-5 text-secondary" />,
-    color: "secondary",
-    nodes: ["MLflow", "DVC", "Docker", "AWS SageMaker", "Apache Airflow", "AWS EC2", "AWS Lambda"],
-    description: "Orchestrating ML workflows, containerization, and cloud infrastructure.",
-    position: "right"
-  },
-  {
-    id: "databases",
-    title: "Databases",
-    icon: <Database className="w-5 h-5 text-primary" />,
-    color: "primary",
-    nodes: ["PostgreSQL", "MySQL", "MongoDB", "Qdrant", "pgvector", "Vector Databases"],
-    description: "Relational, NoSQL, and vector database design for intelligent retrieval.",
-    position: "left"
+    icon: <Terminal className="w-6 h-6" />,
+    color: "from-emerald-400 to-teal-500",
+    bgGlow: "rgba(16,185,129,0.15)",
+    borderColor: "border-emerald-500/20",
+    hoverBorder: "hover:border-emerald-500/50",
+    textColor: "text-emerald-400",
+    description:
+      "Crafting high-performance REST APIs and microservices for production-grade AI applications.",
+    skills: [
+      { name: "FastAPI", level: 95 },
+      { name: "Django", level: 82 },
+      { name: "Flask", level: 85 },
+      { name: "Python", level: 95 },
+      { name: "Node.js", level: 75 },
+      { name: "WebSockets", level: 80 },
+    ],
   },
   {
     id: "data",
+    title: "Data & Databases",
+    icon: <Database className="w-6 h-6" />,
+    color: "from-cyan-400 to-blue-500",
+    bgGlow: "rgba(6,182,212,0.15)",
+    borderColor: "border-cyan-500/20",
+    hoverBorder: "hover:border-cyan-500/50",
+    textColor: "text-cyan-400",
+    description:
+      "Managing vector stores, relational databases, and data pipelines for AI-powered systems.",
+    skills: [
+      { name: "PostgreSQL", level: 88 },
+      { name: "MongoDB", level: 82 },
+      { name: "Qdrant", level: 90 },
+      { name: "pgvector", level: 85 },
+      { name: "Vector Databases", level: 90 },
+      { name: "MySQL", level: 80 },
+    ],
+  },
+  {
+    id: "devops",
+    title: "Cloud & MLOps",
+    icon: <Cloud className="w-6 h-6" />,
+    color: "from-rose-400 to-pink-500",
+    bgGlow: "rgba(244,63,94,0.15)",
+    borderColor: "border-rose-500/20",
+    hoverBorder: "hover:border-rose-500/50",
+    textColor: "text-rose-400",
+    description:
+      "Deploying and orchestrating ML models at scale with modern cloud infrastructure.",
+    skills: [
+      { name: "Docker", level: 85 },
+      { name: "AWS (EC2/Lambda)", level: 80 },
+      { name: "MLflow", level: 78 },
+      { name: "Apache Airflow", level: 75 },
+      { name: "AWS SageMaker", level: 72 },
+      { name: "DVC", level: 70 },
+    ],
+  },
+  {
+    id: "dataeng",
     title: "Data Engineering",
-    icon: <LineChart className="w-5 h-5 text-secondary" />,
-    color: "secondary",
-    nodes: ["Pandas", "NumPy", "Apache Spark", "Apache Kafka", "Hadoop", "ETL/ELT"],
-    description: "Building data pipelines, stream processing, and large-scale analytics.",
-    position: "right"
+    icon: <Code2 className="w-6 h-6" />,
+    color: "from-sky-400 to-indigo-500",
+    bgGlow: "rgba(56,189,248,0.15)",
+    borderColor: "border-sky-500/20",
+    hoverBorder: "hover:border-sky-500/50",
+    textColor: "text-sky-400",
+    description:
+      "Building scalable ETL pipelines and distributed data processing systems.",
+    skills: [
+      { name: "Apache Spark", level: 80 },
+      { name: "PySpark", level: 78 },
+      { name: "NumPy", level: 92 },
+      { name: "Pandas", level: 92 },
+      { name: "ETL Pipelines", level: 82 },
+      { name: "Apache Kafka", level: 72 },
+    ],
   },
 ];
 
-// Map indices to visual radar chart positions
-const getAngle = (i: number) => {
-  switch (i) {
-    case 0: return 240;
-    case 1: return 300;
-    case 2: return 180;
-    case 3: return 0;
-    case 4: return 120;
-    case 5: return 60;
-    default: return 0;
-  }
-};
-
-const getLevel = (i: number) => [0.95, 0.90, 0.92, 0.85, 0.88, 0.82][i] || 0.8;
-
-const SVG_SIZE = 1000;
-const CENTER = SVG_SIZE / 2;
-const RADIUS = 400;
-const GRID_ANGLES = [0, 60, 120, 180, 240, 300];
-
-const getPoint = (angle: number, radius: number) => {
-  const rad = (angle * Math.PI) / 180;
-  const x = Math.round((CENTER + radius * Math.cos(rad)) * 100) / 100;
-  const y = Math.round((CENTER + radius * Math.sin(rad)) * 100) / 100;
-  return `${x},${y}`;
-};
-
-export default function Skills() {
-  const [activeDomain, setActiveDomain] = useState<string | null>(null);
-  
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 500, damping: 30 });
-  const springY = useSpring(mouseY, { stiffness: 500, damping: 30 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
-  };
-
-  const ORBS = useMemo(() => {
-    let seed = 12345;
-    const random = () => {
-      const x = Math.sin(seed++) * 10000;
-      return x - Math.floor(x);
-    };
-
-    const allNodes: { node: string; domainId: string; color: string }[] = [];
-    SKILL_DOMAINS.forEach(domain => {
-      domain.nodes.forEach(node => {
-        allNodes.push({ node, domainId: domain.id, color: domain.color });
-      });
-    });
-
-    const total = allNodes.length;
-
-    return allNodes.map((item, i) => {
-      // Evenly distribute orbs around a ring — equal angle spacing (0 to 2*PI)
-      const angle = (i / total) * Math.PI * 2;
-      // Stagger radius in 3 levels: 37%, 40.5%, 44% from center
-      const radiusPercent = 37 + (i % 3) * 3.5;
-      const x = Math.round((50 + radiusPercent * Math.cos(angle)) * 100) / 100;
-      const y = Math.round((50 + radiusPercent * Math.sin(angle)) * 100) / 100;
-
-      return {
-        id: `${item.domainId}-${i}`,
-        name: item.node,
-        domainId: item.domainId,
-        color: item.color,
-        x,
-        y,
-        duration: Math.round((12 + random() * 10) * 100) / 100,
-        delay: Math.round((random() * -12) * 100) / 100,
-      };
-    });
-  }, []);
-
-
-  const gridPolygons = [0.2, 0.4, 0.6, 0.8, 1.0].map(level => {
-    return GRID_ANGLES.map(angle => getPoint(angle, RADIUS * level)).join(" ");
-  });
-
-  const dataPoints = useMemo(() => {
-    const points = SKILL_DOMAINS.map((d, i) => ({
-      angle: getAngle(i),
-      level: getLevel(i)
-    })).sort((a, b) => a.angle - b.angle);
-    
-    return points.map(p => getPoint(p.angle, RADIUS * p.level)).join(" ");
-  }, []);
-
-  const activeDomainData = SKILL_DOMAINS.find(d => d.id === activeDomain);
-
+function SkillBar({
+  name,
+  level,
+  color,
+  delay,
+}: {
+  name: string;
+  level: number;
+  color: string;
+  delay: number;
+}) {
   return (
-    <section 
-      onMouseMove={handleMouseMove}
-      className="pt-28 pb-16 md:pt-36 md:pb-24 w-full min-h-[100dvh] relative overflow-hidden bg-midnight flex flex-col items-center justify-start cursor-crosshair"
-    >
-      
-      {/* Immersive Holographic Background */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] max-w-[1500px] max-h-[1500px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-midnight to-midnight opacity-60 blur-[120px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
+    <div className="group/bar">
+      <div className="flex items-center justify-between mb-1.5">
+        <span className="text-xs font-mono text-gray-300 group-hover/bar:text-white transition-colors">
+          {name}
+        </span>
+        <span className="text-[10px] font-mono text-gray-500 group-hover/bar:text-gray-300 transition-colors">
+          {level}%
+        </span>
       </div>
-
-      {/* Header */}
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-6 text-center mb-8 pointer-events-none">
+      <div className="h-1.5 rounded-full bg-white/5 overflow-hidden backdrop-blur-sm">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className={`h-full rounded-full bg-gradient-to-r ${color} relative`}
+          initial={{ width: 0 }}
+          whileInView={{ width: `${level}%` }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{
+            duration: 1.2,
+            delay: delay,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
         >
-          <span className="text-secondary font-mono text-sm tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
-            <Network className="w-4 h-4" /> Systems Overview
-          </span>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-white drop-shadow-2xl">
-            Skill <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Matrix</span>
-          </h2>
+          {/* Shine effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover/bar:opacity-100 transition-opacity duration-500 animate-[shimmer_2s_ease-in-out_infinite]" />
         </motion.div>
       </div>
+    </div>
+  );
+}
 
-      {/* Outer container: full-width for orbs, centered radar inside */}
-      <div className="relative w-full flex items-center justify-center z-10 mx-auto" style={{ maxWidth: '900px', aspectRatio: '1' }}>
-        
-        {/* Floating Skill Orbs — absolutely positioned relative to this outer container */}
-        <div className="absolute inset-0 pointer-events-none z-20">
-          {ORBS.map((orb) => (
-            <div
-              key={orb.id}
-              className="absolute"
-              style={{
-                left: `${orb.x}%`,
-                top: `${orb.y}%`,
-              }}
-            >
-              <motion.div
-                className={`flex items-center justify-center px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10 shadow-lg
-                  ${orb.color === 'primary' ? 'bg-primary/10 text-primary shadow-primary/20' : 'bg-secondary/10 text-secondary shadow-secondary/20'}
-                  ${activeDomain && activeDomain !== orb.domainId ? 'opacity-20 scale-90' : 'opacity-80 scale-100'} transition-all duration-500`}
-                style={{ x: "-50%", y: "-50%" }}
-                animate={{
-                  y: ["-50%", "calc(-50% - 10px)", "-50%"],
-                }}
-                transition={{
-                  y: { duration: orb.duration, repeat: Infinity, ease: "easeInOut", delay: orb.delay },
-                }}
-              >
-                <span className="text-[9px] md:text-[10px] font-mono tracking-wider whitespace-nowrap drop-shadow-md">
-                  {orb.name}
-                </span>
-              </motion.div>
-            </div>
-          ))}
+export default function Skills() {
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+
+  return (
+    <section className="py-20 md:py-28 px-4 md:px-6 w-full relative overflow-hidden bg-midnight">
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/8 via-midnight to-midnight opacity-60 blur-[100px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:60px_60px] opacity-40" />
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="text-secondary font-mono text-sm tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
+              <Sparkles className="w-4 h-4" /> Technical Arsenal
+            </span>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-4 text-white drop-shadow-2xl">
+              Skill{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                Matrix
+              </span>
+            </h2>
+            <p className="text-gray-400 font-light text-lg max-w-2xl mx-auto">
+              A deep stack of AI engineering tools and frameworks, battle-tested
+              across production systems.
+            </p>
+          </motion.div>
         </div>
 
-        {/* Hero Radar Chart — 65% of outer container, centered; orbs live in the 35%-50% ring */}
-        <motion.div 
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SKILL_CATEGORIES.map((category, idx) => {
+            const isExpanded = expandedCard === category.id;
+
+            return (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                layout
+                onClick={() =>
+                  setExpandedCard(isExpanded ? null : category.id)
+                }
+                className={`relative rounded-2xl border ${category.borderColor} ${category.hoverBorder} 
+                  bg-white/[0.02] backdrop-blur-xl cursor-pointer
+                  transition-all duration-500 group overflow-hidden
+                  hover:bg-white/[0.04] hover:shadow-2xl`}
+                style={{
+                  boxShadow: isExpanded
+                    ? `0 0 40px ${category.bgGlow}, 0 0 80px ${category.bgGlow}`
+                    : "none",
+                }}
+              >
+                {/* Top gradient line */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r ${category.color} opacity-40 group-hover:opacity-80 transition-opacity duration-500`}
+                />
+
+                {/* Card Content */}
+                <div className="p-6">
+                  {/* Header row */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`p-2.5 rounded-xl bg-gradient-to-br ${category.color} bg-opacity-10 backdrop-blur-sm 
+                          shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                        style={{
+                          background: `linear-gradient(135deg, ${category.bgGlow}, transparent)`,
+                        }}
+                      >
+                        <div className={category.textColor}>
+                          {category.icon}
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-base font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all">
+                          {category.title}
+                        </h3>
+                        <p className="text-[11px] text-gray-500 font-mono">
+                          {category.skills.length} technologies
+                        </p>
+                      </div>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: isExpanded ? 90 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-gray-600 group-hover:text-gray-400 transition-colors mt-1"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </motion.div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-xs text-gray-500 leading-relaxed mb-5 line-clamp-2">
+                    {category.description}
+                  </p>
+
+                  {/* Skill chips (collapsed view) */}
+                  <AnimatePresence mode="wait">
+                    {!isExpanded && (
+                      <motion.div
+                        key="chips"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="flex flex-wrap gap-1.5"
+                      >
+                        {category.skills.map((skill) => (
+                          <span
+                            key={skill.name}
+                            className={`px-2.5 py-1 text-[10px] font-mono rounded-md
+                              bg-white/[0.04] border border-white/[0.06] ${category.textColor}
+                              hover:bg-white/[0.08] hover:border-white/[0.12] transition-all duration-200`}
+                          >
+                            {skill.name}
+                          </span>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Skill bars (expanded view) */}
+                  <AnimatePresence mode="wait">
+                    {isExpanded && (
+                      <motion.div
+                        key="bars"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="space-y-3 overflow-hidden"
+                      >
+                        {category.skills.map((skill, si) => (
+                          <SkillBar
+                            key={skill.name}
+                            name={skill.name}
+                            level={skill.level}
+                            color={category.color}
+                            delay={si * 0.08}
+                          />
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Bottom glow on hover */}
+                <div
+                  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-20 blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none"
+                  style={{
+                    background: `radial-gradient(ellipse, ${category.bgGlow}, transparent)`,
+                  }}
+                />
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Bottom summary */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2, type: "spring", bounce: 0.2 }}
-          className="relative aspect-square"
-          style={{ width: '65%' }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-12 text-center"
         >
-          <div className="absolute inset-0 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-          
-          <svg viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`} className="w-full h-full drop-shadow-[0_0_30px_rgba(245,230,211,0.15)] overflow-visible">
-            <defs>
-              <linearGradient id="heroPolygonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="rgba(245,230,211,0.4)" />
-                <stop offset="50%" stopColor="rgba(245,230,211,0.1)" />
-                <stop offset="100%" stopColor="rgba(139,90,43,0.4)" />
-              </linearGradient>
-              <filter id="heroGlow">
-                <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-
-            {gridPolygons.map((points, i) => (
-              <polygon
-                key={i}
-                points={points}
-                fill="none"
-                stroke="rgba(255,255,255,0.08)"
-                strokeWidth={i === 4 ? "3" : "1"}
-                className="transition-all duration-1000"
-              />
-            ))}
-
-            {GRID_ANGLES.map(angle => (
-              <line
-                key={angle}
-                x1={CENTER}
-                y1={CENTER}
-                x2={Math.round((CENTER + RADIUS * Math.cos(angle * Math.PI / 180)) * 100) / 100}
-                y2={Math.round((CENTER + RADIUS * Math.sin(angle * Math.PI / 180)) * 100) / 100}
-                stroke="rgba(255,255,255,0.15)"
-                strokeWidth="2"
-                strokeDasharray="5 5"
-              />
-            ))}
-
-            <motion.polygon
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-              style={{ transformOrigin: 'center' }}
-              points={dataPoints}
-              fill="url(#heroPolygonGrad)"
-              stroke="rgba(245,230,211,0.8)"
-              strokeWidth="4"
-              filter="url(#heroGlow)"
-              className="drop-shadow-[0_0_20px_rgba(245,230,211,0.5)] cursor-crosshair hover:fill-primary/20 transition-colors duration-500"
-            />
-
-            {SKILL_DOMAINS.map((domain, i) => {
-              const angle = getAngle(i);
-              const level = getLevel(i);
-              const [x, y] = getPoint(angle, RADIUS * level).split(",");
-              const isActive = activeDomain === domain.id;
-              const isOtherActive = activeDomain && activeDomain !== domain.id;
-              
-              return (
-                <g 
-                  key={`vertex-${domain.id}`}
-                  onMouseEnter={() => setActiveDomain(domain.id)}
-                  onMouseLeave={() => setActiveDomain(null)}
-                  className="cursor-pointer group/vertex"
-                >
-                  <circle cx={x} cy={y} r="80" fill="transparent" />
-                  
-                  <motion.circle
-                    cx={x}
-                    cy={y}
-                    r={isActive ? 25 : 0}
-                    fill="none"
-                    stroke={domain.color === 'primary' ? 'rgba(245,230,211,0.8)' : 'rgba(139,90,43,0.8)'}
-                    strokeWidth="3"
-                    className="transition-all duration-300 pointer-events-none"
-                    animate={isActive ? { scale: [1, 1.2, 1], opacity: [0.8, 0, 0.8] } : {}}
-                    transition={{ repeat: Infinity, duration: 1.5 }}
-                  />
-                  
-                  <circle
-                    cx={x}
-                    cy={y}
-                    r={isActive ? 12 : 8}
-                    fill={domain.color === 'primary' ? '#F5E6D3' : '#8B5A2B'}
-                    className={`transition-all duration-300 pointer-events-none ${isActive ? 'drop-shadow-[0_0_15px_rgba(255,255,255,1)]' : 'drop-shadow-lg'} ${isOtherActive ? 'opacity-30' : 'opacity-100'}`}
-                  />
-                </g>
-              );
-            })}
-          </svg>
-
-          {/* Center Hub */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-black/80 border-2 border-primary/50 flex items-center justify-center backdrop-blur-xl shadow-[0_0_50px_rgba(245,230,211,0.3)]">
-              <Network className="w-6 h-6 md:w-8 md:h-8 text-primary animate-pulse" />
-              <div className="absolute inset-[-10px] rounded-full border border-primary/30 border-dashed animate-[spin_10s_linear_infinite]" />
-              <div className="absolute inset-[-20px] rounded-full border border-secondary/30 border-dashed animate-[spin_15s_linear_infinite_reverse]" />
-            </div>
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+            <span className="text-xs font-mono text-gray-400">
+              {SKILL_CATEGORIES.reduce(
+                (acc, cat) => acc + cat.skills.length,
+                0
+              )}{" "}
+              technologies across {SKILL_CATEGORIES.length} domains
+            </span>
           </div>
         </motion.div>
       </div>
-
-      {/* Mobile Sticky Detail Card */}
-      <AnimatePresence>
-        {activeDomainData && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="md:hidden fixed bottom-6 left-4 right-4 z-50 pointer-events-none"
-          >
-            <div className={`glass w-full p-5 rounded-2xl border bg-black/90 backdrop-blur-3xl shadow-[0_20px_40px_rgba(0,0,0,0.8)]
-              ${activeDomainData.color === 'primary' ? 'border-primary/50 shadow-primary/20' : 'border-secondary/50 shadow-secondary/20'}`}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className={`p-2 rounded-lg bg-white/5 border ${activeDomainData.color === 'primary' ? 'border-primary/30 text-primary' : 'border-secondary/30 text-secondary'}`}>
-                  {activeDomainData.icon}
-                </div>
-                <h4 className="text-lg font-bold text-white leading-tight">
-                  {activeDomainData.title}
-                </h4>
-              </div>
-              <p className="text-xs text-gray-400 leading-relaxed mb-4">
-                {activeDomainData.description}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {activeDomainData.nodes.map(node => (
-                  <span 
-                    key={node}
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono border 
-                      ${activeDomainData.color === 'primary' ? 'bg-primary/10 border-primary/30 text-primary' : 'bg-secondary/10 border-secondary/30 text-secondary'}`}
-                  >
-                    {node}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Desktop Floating HUD Tooltip */}
-      <AnimatePresence>
-        {activeDomainData && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.2 }}
-            style={{ x: springX, y: springY }}
-            className="hidden md:block fixed top-0 left-0 z-50 pointer-events-none ml-6 mt-6"
-          >
-            <div className={`glass w-80 p-5 rounded-2xl border bg-black/80 backdrop-blur-2xl shadow-[0_20px_40px_rgba(0,0,0,0.8)]
-              ${activeDomainData.color === 'primary' ? 'border-primary/50 shadow-primary/20' : 'border-secondary/50 shadow-secondary/20'}`}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className={`p-2 rounded-lg bg-white/5 border ${activeDomainData.color === 'primary' ? 'border-primary/30 text-primary' : 'border-secondary/30 text-secondary'}`}>
-                  {activeDomainData.icon}
-                </div>
-                <h4 className="text-lg font-bold text-white leading-tight">
-                  {activeDomainData.title}
-                </h4>
-              </div>
-              <p className="text-xs text-gray-400 leading-relaxed mb-4">
-                {activeDomainData.description}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {activeDomainData.nodes.map(node => (
-                  <span 
-                    key={node}
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono border 
-                      ${activeDomainData.color === 'primary' ? 'bg-primary/10 border-primary/30 text-primary' : 'bg-secondary/10 border-secondary/30 text-secondary'}`}
-                  >
-                    {node}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
     </section>
   );
 }

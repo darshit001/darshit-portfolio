@@ -5,8 +5,8 @@ import { useState, useRef, useEffect } from "react";
 import { Code2, BrainCircuit, Search, Database, Terminal, LayoutTemplate, Minimize2, Maximize2, X, Minus, ExternalLink, Mic, Bot } from "lucide-react";
 
 const GithubIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.1-.34 6.33-1.53 6.33-6.98 0-1.5-.5-2.8-1.4-3.8.1-.3.6-1.8-.1-3.8 0 0-1.1-.4-3.6 1.3a12.3 12.3 0 0 0-6.6 0C6.2 3.6 5.1 4 5.1 4c-.7 2-.2 3.5-.1 3.8-.9 1-1.4 2.3-1.4 3.8 0 5.4 3.2 6.6 6.3 7A4.8 4.8 0 0 0 9 18v4"></path>
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
   </svg>
 );
 
@@ -71,36 +71,37 @@ const PROJECTS_DATA: ProjectData[] = [
     features: ["Natural language to SQL translation", "Schema graph analysis", "Multi-table join support", "Automated query generation", "Results visualization"],
     tech: ["Python", "LangChain", "OpenAI", "PostgreSQL", "FastAPI"],
     liveUrl: "https://github.com/darshit001",
-    githubUrl: "https://github.com/darshit001",
+    liveUrl: "https://github.com/darshit001/NaturalSQL",
+    githubUrl: "https://github.com/darshit001/NaturalSQL",
     featured: true
   },
   {
     id: "lightgpt",
     title: "LightGPT",
-    tagline: "Lightweight AI Assistant with MCP Tool Integration & Real-time Search",
+    tagline: "Multi-tool AI Assistant — real-time chat, code gen, PDF Q&A, web search & image creation",
     category: "AI Assistant",
     icon: <LightGPTLogo />,
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format&fit=crop",
     previewType: "image",
     previewUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format&fit=crop",
-    features: ["Groq LLM integration (Llama3-70B)", "OAuth authentication", "MCP server connectivity", "Real-time web search", "Tool-use agent architecture"],
-    tech: ["Python", "Groq", "LangChain", "MCP", "OAuth", "FastAPI"],
-    liveUrl: "https://github.com/darshit001",
-    githubUrl: "https://github.com/darshit001"
+    features: ["Groq LLM integration (Llama3-70B)", "Real-time chat & code generation", "PDF question answering", "Web search & image creation", "PostgreSQL-backed chat history"],
+    tech: ["Python", "Groq", "LangChain", "Streamlit", "PostgreSQL"],
+    liveUrl: "https://github.com/darshit001/LightGPT",
+    githubUrl: "https://github.com/darshit001/LightGPT"
   },
   {
     id: "smartweb",
     title: "SmartWeb Assistant",
-    tagline: "RAG-Powered Web Scraping & Intelligent Q&A System",
+    tagline: "RAG-Powered Web Scraping & Intelligent Q&A — answers questions from any live website",
     category: "RAG System",
     icon: <SmartWebLogo />,
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop",
     previewType: "image",
     previewUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop",
-    features: ["Dynamic web scraping", "Qdrant vector database", "OpenAI embeddings", "Chunk-based retrieval", "Context-grounded answers"],
-    tech: ["Python", "Qdrant", "OpenAI", "LangChain", "FastAPI"],
-    liveUrl: "https://github.com/darshit001",
-    githubUrl: "https://github.com/darshit001"
+    features: ["Dynamic web crawling & scraping", "Qdrant vector database storage", "LLaMA 3 + LangChain RAG pipeline", "Chunk-based retrieval", "Streamlit chat interface with history"],
+    tech: ["Python", "Qdrant", "LLaMA 3", "LangChain", "Streamlit"],
+    liveUrl: "https://github.com/darshit001/SmartWeb-Assistant",
+    githubUrl: "https://github.com/darshit001/SmartWeb-Assistant"
   },
   {
     id: "voiceflow",
@@ -436,7 +437,7 @@ export default function Projects() {
           })}
 
           {/* Floating Dock Layer */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-2xl bg-black/60 backdrop-blur-3xl border border-white/20 shadow-[0_20px_40px_rgba(0,0,0,0.8)] flex items-center gap-2">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 px-3 py-2 rounded-2xl bg-black/60 backdrop-blur-3xl border border-white/20 shadow-[0_20px_40px_rgba(0,0,0,0.8)] flex items-center gap-1.5 overflow-hidden">
             {openWindows.map(id => {
               const project = PROJECTS_DATA.find(p => p.id === id);
               if (!project) return null;
@@ -453,28 +454,28 @@ export default function Projects() {
                   </div>
 
                   <motion.button
-                    whileHover={{ scale: 1.2, y: -10 }}
+                    whileHover={{ scale: 1.15, y: -6 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => {
                       if (isActive && !isMinimized) minimizeApp(id);
                       else openApp(id);
                     }}
-                    className="w-12 h-12 relative flex items-center justify-center transition-transform"
+                    className="w-10 h-10 relative flex items-center justify-center transition-transform shrink-0"
                   >
                     <div className="w-full h-full p-0.5">{project.icon}</div>
                     {isActive && (
-                      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary shadow-[0_0_5px_rgba(var(--primary-rgb),1)]" />
+                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary shadow-[0_0_5px_rgba(var(--primary-rgb),1)]" />
                     )}
                     {!isActive && openWindows.includes(id) && (
-                      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white/50" />
+                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white/50" />
                     )}
                   </motion.button>
                 </div>
               );
             })}
             {openWindows.length === 0 && (
-              <div className="text-gray-500 text-sm px-4 py-2 font-medium">
-                Desktop Workspace
+              <div className="text-gray-500 text-xs px-3 py-1.5 font-mono">
+                Double-click an icon to open
               </div>
             )}
           </div>

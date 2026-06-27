@@ -23,8 +23,8 @@ type ExperienceData = {
 const EXPERIENCE: ExperienceData[] = [
   {
     role: "AI Chatbot Development",
-    company: "Freelance / Projects",
-    duration: "2024 - Present",
+    company: "Freelance Client Projects",
+    duration: "2024 – Present",
     category: "RAG Systems",
     icon: <BrainCircuit className="w-8 h-8 text-primary" />,
     description: "RAG-based conversational AI with retrieval-augmented generation for context-aware, accurate responses grounded in custom business data.",
@@ -40,8 +40,8 @@ const EXPERIENCE: ExperienceData[] = [
   },
   {
     role: "Agentic AI Systems",
-    company: "Personal Projects",
-    duration: "2024 - Present",
+    company: "Independent Research & Development",
+    duration: "2024 – Present",
     category: "Multi-Agent AI",
     icon: <Workflow className="w-8 h-8 text-secondary" />,
     description: "Multi-agent orchestration with LangGraph — designing autonomous AI agents that reason, plan, and collaborate to solve complex, multi-step tasks.",
@@ -57,8 +57,8 @@ const EXPERIENCE: ExperienceData[] = [
   },
   {
     role: "API & Backend Development",
-    company: "Professional Services",
-    duration: "2023 - Present",
+    company: "Freelance Client Projects",
+    duration: "2023 – Present",
     category: "Backend Engineering",
     icon: <Code2 className="w-8 h-8 text-primary" />,
     description: "High-performance, production-ready REST APIs built with FastAPI to serve as robust backends for scalable AI applications.",
@@ -74,8 +74,8 @@ const EXPERIENCE: ExperienceData[] = [
   },
   {
     role: "AI Voice Agent Development",
-    company: "Innovation Projects",
-    duration: "2025 - Present",
+    company: "Independent Research & Development",
+    duration: "2025 – Present",
     category: "Voice AI",
     icon: <Mic className="w-8 h-8 text-secondary" />,
     description: "Intelligent voice-based agents combining real-time speech recognition, LLM reasoning, and natural text-to-speech for seamless automated support.",
@@ -147,7 +147,7 @@ export default function Experience() {
               What I Build
             </span>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-white drop-shadow-2xl">
-              Services <span className="text-gradient"></span>
+              My <span className="text-gradient">Experience</span>
             </h2>
             
           </motion.div>
@@ -187,14 +187,18 @@ export default function Experience() {
                           {exp.icon}
                         </div>
                         <div>
-                          <div className="flex flex-wrap items-center gap-4 mb-2">
+                          <div className="flex flex-wrap items-center gap-3 mb-2">
                             <span className="text-xs font-mono text-primary uppercase tracking-widest px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
                               {exp.category}
+                            </span>
+                            <span className="text-xs font-mono text-gray-500 px-3 py-1 bg-white/5 border border-white/10 rounded-full">
+                              {exp.duration}
                             </span>
                           </div>
                           <h3 className="text-3xl md:text-4xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary transition-all duration-300">
                             {exp.role}
                           </h3>
+                          <p className="text-sm text-gray-500 font-mono mt-1">{exp.company}</p>
                         </div>
                       </div>
                       

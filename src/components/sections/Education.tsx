@@ -13,8 +13,8 @@ const EDUCATION = [
     id: "btech",
     institution: "LJ University, Ahmedabad",
     degree: "B.E. in Computer Engineering",
-    year: "2021 - 2025",
-    category: "Higher Education / AI Systems Engineering",
+    year: "2021 – 2025",
+    category: "Higher Education",
     icon: <Network className="w-8 h-8 text-primary" />,
     narrative: "The transformation into an AI engineer focused on scalable intelligent systems, agentic AI, and advanced backend engineering.",
     focus: [
@@ -56,7 +56,7 @@ export default function Education() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 md:py-32 px-4 md:px-6 w-full min-h-screen relative overflow-hidden bg-midnight">
+    <section ref={containerRef} className="py-20 md:py-28 px-4 md:px-6 w-full relative overflow-hidden bg-midnight">
       
       {/* Background Cinematic Particles */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -67,7 +67,7 @@ export default function Education() {
       <div className="max-w-5xl mx-auto relative z-10">
         
         {/* Header */}
-        <div className="mb-20 md:mb-32 text-center">
+        <div className="mb-12 md:mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ export default function Education() {
               Academic Background
             </span>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-white drop-shadow-2xl">
-              Education <span className="text-gradient"></span>
+              Education <span className="text-gradient">Journey</span>
             </h2>
             <p className="text-gray-400 font-light text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
               Computer Engineering graduate from LJ University, Ahmedabad — focused on building intelligent AI systems and scalable backend architectures.
@@ -88,7 +88,7 @@ export default function Education() {
         </div>
 
         {/* Education Journey Timeline */}
-        <div className="relative mb-20 md:mb-40">
+        <div className="relative mb-8 md:mb-12">
           
           <div ref={timelineRef} className="relative pl-8 md:pl-16 border-l border-white/5 space-y-12 md:space-y-24">
             {/* Animated Connecting Timeline */}
