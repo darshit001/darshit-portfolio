@@ -93,10 +93,27 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="text-lg md:text-2xl font-light text-gray-300 mb-6 tracking-wide"
+          className="text-lg md:text-2xl font-light text-gray-300 mb-3 tracking-wide"
         >
-          AI Engineer <span className="text-primary px-2">|</span> Agentic AI Specialist <span className="text-primary px-2">|</span> Backend Developer
+          AI Engineer <span className="text-primary px-2">|</span> Building Real-World AI Solutions 🤖
         </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="text-sm md:text-base font-mono text-gray-400 mb-6 tracking-widest"
+        >
+          <span className="text-primary">Agentic AI</span>
+          <span className="text-gray-600 mx-2">•</span>
+          <span className="text-primary">RAG</span>
+          <span className="text-gray-600 mx-2">•</span>
+          <span className="text-primary">LLMs</span>
+          <span className="text-gray-600 mx-2">•</span>
+          <span className="text-primary">Voice Agents</span>
+          <span className="text-gray-600 mx-2">•</span>
+          <span className="text-primary">Automation</span>
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

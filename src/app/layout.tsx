@@ -17,8 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://darshit-radadiya.vercel.app"),
   title: "Darshit Radadiya | AI Engineer & Agentic AI Specialist",
-  description:
-    "Portfolio of Darshit Radadiya — AI Engineer from Ahmedabad specializing in LangChain, LangGraph, RAG pipelines, Agentic AI Systems, and scalable intelligent applications.",
+  description: 'Darshit Radadiya — AI Engineer building real-world AI solutions. Specializing in Agentic AI, RAG Pipelines, LLMs, Voice Agents, and Automation. Based in Ahmedabad, India.',
   keywords: [
     "Darshit Radadiya",
     "Darshit Radadiya portfolio",
