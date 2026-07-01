@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://darshit-portfolio-tau.vercel.app"),
+  metadataBase: new URL("https://darshit-radadiya.vercel.app"),
   title: "Darshit Radadiya | AI Engineer & Agentic AI Specialist",
   description:
     "Portfolio of Darshit Radadiya — AI Engineer from Ahmedabad specializing in LangChain, LangGraph, RAG pipelines, Agentic AI Systems, and scalable intelligent applications.",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://darshit-portfolio-tau.vercel.app",
+    url: "https://darshit-radadiya.vercel.app",
     title: "Darshit Radadiya | AI Engineer & Agentic AI Specialist",
     description:
       "AI Engineer specializing in LangChain, RAG pipelines, and Agentic AI Systems — building intelligent, scalable applications.",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: "https://darshit-portfolio-tau.vercel.app",
+    canonical: "https://darshit-radadiya.vercel.app",
   },
   verification: {
     google: "MZ27dxiWnKSpiGxm4SioEq_8_fcRtFDeuYeqHhe45JA",
@@ -74,7 +74,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Darshit Radadiya",
-  url: "https://darshit-portfolio-tau.vercel.app",
+  url: "https://darshit-radadiya.vercel.app",
   jobTitle: "AI Engineer",
   description:
     "AI Engineer specializing in LangChain, LangGraph, RAG pipelines, and Agentic AI Systems",

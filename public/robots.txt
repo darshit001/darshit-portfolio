@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://darshit-portfolio-tau.vercel.app/sitemap.xml
+Sitemap: https://darshit-radadiya.vercel.app/sitemap.xml
