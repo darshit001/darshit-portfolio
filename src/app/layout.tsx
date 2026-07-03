@@ -7,7 +7,7 @@ import Cursor3D from "@/components/ui/Cursor3D";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
+}); // trigger-build-1
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
