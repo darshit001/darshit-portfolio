@@ -72,33 +72,108 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Darshit Radadiya",
-  url: "https://darshit-radadiya.vercel.app",
-  jobTitle: "AI Engineer",
-  description:
-    "AI Engineer specializing in LangChain, LangGraph, RAG pipelines, and Agentic AI Systems",
-  sameAs: [
-    "https://github.com/darshit001",
-    "https://linkedin.com/in/darshit-radadiya-918975230/",
-  ],
-  alumniOf: {
-    "@type": "EducationalOrganization",
-    name: "LJ University, Ahmedabad",
+const jsonLdArray = [
+  // Schema 1: Person — the primary entity for "Who is Darshit Radadiya?"
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://darshit-radadiya.vercel.app/#person",
+    name: "Darshit Radadiya",
+    givenName: "Darshit",
+    familyName: "Radadiya",
+    url: "https://darshit-radadiya.vercel.app",
+    image: "https://darshit-radadiya.vercel.app/og-image.png",
+    jobTitle: "AI Engineer",
+    description:
+      "Darshit Radadiya is an AI Engineer from Ahmedabad, India, building real-world AI solutions. He specializes in Agentic AI Systems, RAG Pipelines, LLMs, Voice Agents, and Automation using LangChain, LangGraph, and FastAPI.",
+    sameAs: [
+      "https://github.com/darshit001",
+      "https://linkedin.com/in/darshit-radadiya-918975230/",
+      "https://dev.to/darshitradadiya",
+      "https://medium.com/@darshitradadiya01",
+      "https://darshit.hashnode.dev",
+      "https://stackoverflow.com/users/darshit-radadiya",
+    ],
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "LJ University",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Ahmedabad",
+        addressRegion: "Gujarat",
+        addressCountry: "IN",
+      },
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      addressCountry: "IN",
+    },
+    nationality: {
+      "@type": "Country",
+      name: "India",
+    },
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Agentic AI Systems",
+      "RAG Pipelines",
+      "Retrieval-Augmented Generation",
+      "Large Language Models",
+      "LangChain",
+      "LangGraph",
+      "Voice AI Agents",
+      "Multi-Agent Orchestration",
+      "FastAPI",
+      "Python",
+      "OpenAI",
+      "Qdrant",
+      "Natural Language Processing",
+      "Machine Learning",
+      "Backend Development",
+      "MLOps",
+    ],
+    knowsLanguage: ["English", "Hindi", "Gujarati"],
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "Bachelor's Degree",
+      name: "Bachelor of Engineering in Computer Engineering",
+      recognizedBy: {
+        "@type": "EducationalOrganization",
+        name: "LJ University",
+      },
+    },
   },
-  knowsAbout: [
-    "LangChain",
-    "LangGraph",
-    "RAG Architectures",
-    "Agentic AI",
-    "FastAPI",
-    "Python",
-    "Multi-Agent Systems",
-    "OpenAI",
-  ],
-};
+  // Schema 2: ProfilePage — tells AI this page IS about the person
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": "https://darshit-radadiya.vercel.app/#profilepage",
+    name: "Darshit Radadiya — AI Engineer Portfolio",
+    url: "https://darshit-radadiya.vercel.app",
+    description:
+      "Official portfolio of Darshit Radadiya, AI Engineer from Ahmedabad specializing in Agentic AI, RAG Pipelines, LLMs, Voice Agents, and Automation.",
+    mainEntity: {
+      "@id": "https://darshit-radadiya.vercel.app/#person",
+    },
+    dateCreated: "2024-01-01",
+    dateModified: new Date().toISOString().split("T")[0],
+  },
+  // Schema 3: WebSite — helps AI understand the site structure
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://darshit-radadiya.vercel.app/#website",
+    name: "Darshit Radadiya Portfolio",
+    url: "https://darshit-radadiya.vercel.app",
+    description:
+      "Portfolio website of Darshit Radadiya — AI Engineer building real-world AI solutions with Agentic AI, RAG, LLMs, Voice Agents, and Automation.",
+    author: {
+      "@id": "https://darshit-radadiya.vercel.app/#person",
+    },
+    inLanguage: "en-US",
+  },
+];
 
 export default function RootLayout({
   children,
@@ -112,10 +187,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        {jsonLdArray.map((schema, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body className="min-h-full flex flex-col bg-midnight text-text selection:bg-primary selection:text-midnight" suppressHydrationWarning>
         <Cursor3D />

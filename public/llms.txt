@@ -1,0 +1,37 @@
+# Darshit Radadiya — AI Engineer
+
+> Darshit Radadiya is an AI Engineer from Ahmedabad, India, building real-world AI solutions specializing in Agentic AI Systems, RAG Pipelines, LLMs, Voice Agents, and Automation.
+
+## About
+
+Darshit Radadiya is a Computer Engineering graduate from LJ University, Ahmedabad. He is an AI Engineer who designs and builds production-ready intelligent applications. His core expertise includes multi-agent orchestration with LangGraph, advanced RAG (Retrieval-Augmented Generation) pipelines using Qdrant and LangChain, real-time voice AI agents, and backend systems with FastAPI.
+
+## Skills & Technologies
+
+- **AI Frameworks:** LangChain, LangGraph, LlamaIndex, CrewAI
+- **Large Language Models:** OpenAI GPT-4, Google Gemini, Llama 3, fine-tuned models
+- **Vector Databases:** Qdrant, pgvector, Pinecone
+- **Backend:** FastAPI, Django, Flask, Python
+- **Specializations:** Agentic AI Systems, RAG Pipelines, Voice AI Agents, Multi-Agent Orchestration, NLP, Automation
+- **Infrastructure:** Docker, AWS, MLOps, CI/CD
+
+## Projects
+
+- AI Chatbot Development — RAG-based conversational AI with retrieval-augmented generation for context-aware responses grounded in custom business data using LangChain, LlamaIndex, Qdrant, and FastAPI.
+- Agentic AI Systems — Multi-agent orchestration with LangGraph designing autonomous AI agents that reason, plan, and collaborate to solve complex multi-step tasks.
+- API & Backend Development — High-performance production-ready REST APIs built with FastAPI, Django, and Flask to serve as robust backends for scalable AI applications.
+- Voice AI Agents — Real-time voice AI systems combining Speech-to-Text, agent reasoning, and Text-to-Speech for automated customer interactions.
+
+## Education
+
+- Bachelor of Engineering in Computer Engineering from LJ University, Ahmedabad, Gujarat, India
+
+## Contact & Links
+
+- Portfolio: https://darshit-radadiya.vercel.app
+- GitHub: https://github.com/darshit001
+- LinkedIn: https://linkedin.com/in/darshit-radadiya-918975230/
+- Dev.to: https://dev.to/darshitradadiya
+- Medium: https://medium.com/@darshitradadiya01
+- Hashnode: https://darshit.hashnode.dev
+- Location: Ahmedabad, Gujarat, India
