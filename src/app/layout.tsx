@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/layout/LenisProvider";
 import Cursor3D from "@/components/ui/Cursor3D";
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -200,6 +201,7 @@ export default function RootLayout({
         <LenisProvider>
           {children}
         </LenisProvider>
+        <Analytics />
       </body>
     </html>
   );
